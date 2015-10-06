@@ -15,3 +15,11 @@ def phone_number(num_string):
     else:
         cleaned = "{}-{}-{}".format(*match.groups())
         return {"area_code": cleaned[0:3], "number": cleaned[4:12]}
+
+def money(mon_string):
+    match = re.search(r"\$([0-9]{1,3},([0-9]{3},)*[0-9]{3}|[0-9]+)(.[0-9]{2})?$", mon_string)
+    if match == None:
+        print(None)
+    else:
+        output = match.group().replace(",", "")
+        return {"currency": output[0], "amount": float(output[1:])}
